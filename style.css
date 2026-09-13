@@ -123,6 +123,17 @@ input[type="time"]:focus {
   box-shadow: 3px 3px 0 var(--pink);
 }
 
+/* Hide the native clock icon — it makes type="time" inputs render taller
+   than the plain text inputs next to them. Segment click/type/arrow-key
+   behavior all still works without it. */
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+input[type="time"] {
+  -webkit-appearance: textfield;
+  appearance: textfield;
+}
+
 .toggle-field { justify-content: center; }
 
 .toggle {
