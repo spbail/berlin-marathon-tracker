@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Where's Sam? — Berlin Marathon Tracker</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <h1 id="pageTitle">Where's <span class="accent">Sam</span>?</h1>
+  <p class="date-badge" id="tagline">Berlin Marathon, September 2026</p>
+</header>
+
+<main>
+  <section class="controls panel">
+    <div class="field">
+      <label for="nameInput">Runner name</label>
+      <input id="nameInput" type="text" value="Sam" maxlength="30" autocomplete="off" />
+    </div>
+
+    <div class="field">
+      <label for="startInput">Start time</label>
+      <input id="startInput" type="time" value="09:15" />
+    </div>
+
+    <div class="field toggle-field">
+      <label>Goal type</label>
+      <div class="toggle" id="goalTypeToggle">
+        <button type="button" data-value="time" class="toggle-btn active">Total time</button>
+        <button type="button" data-value="pace" class="toggle-btn">Pace</button>
+      </div>
+    </div>
+
+    <div class="field" id="goalTimeField">
+      <label for="goalTimeInput">Goal finish time (hh:mm:ss)</label>
+      <input id="goalTimeInput" type="text" placeholder="03:45:00" value="03:45:00" inputmode="numeric" />
+    </div>
+
+    <div class="field" id="goalPaceField" style="display:none;">
+      <label for="goalPaceInput">Goal pace (mm:ss / km)</label>
+      <input id="goalPaceInput" type="text" placeholder="05:20" value="05:20" inputmode="numeric" />
+    </div>
+
+    <button id="calculateBtn" class="calculate-btn">Calculate predicted location</button>
+    <button id="shareBtn" class="share-btn">Copy share link</button>
+    <p id="shareFeedback" class="share-feedback" aria-live="polite"></p>
+  </section>
+
+  <section class="map panel">
+    <h2 class="section-heading">Predicted location</h2>
+    <div id="map"></div>
+    <p class="map-hint">Click or tap the route to see your ETA there</p>
+  </section>
+</main>
+
+<footer>
+  <p>Berlin Marathon spectator guide — client-side only, no server required</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="route-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
