@@ -89,19 +89,20 @@ function nearestDistanceOnRoute(latlng) {
 
 // ---- time helpers -----------------------------------------------------------
 
+// Pace field is always mm:ss.
 function parseClockToSeconds(str) {
   const parts = str.split(":").map((n) => parseInt(n, 10) || 0);
-  if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
   if (parts.length === 2) return parts[0] * 60 + parts[1];
   return parts[0] || 0;
 }
 
-function formatDuration(totalSeconds) {
-  const s = Math.max(0, Math.round(totalSeconds));
-  const h = Math.floor(s / 3600);
-  const m = Math.floor((s % 3600) / 60);
-  const sec = s % 60;
-  return [h, m, sec].map((n) => String(n).padStart(2, "0")).join(":");
+// Goal finish time field is always h:mm (e.g. "5:32" = 5h 32m) — no seconds,
+// so there's no ambiguity between "hh:mm" and "mm:ss" like a bare clock string has.
+function parseHoursMinutesToSeconds(str) {
+  const parts = str.split(":").map((n) => parseInt(n, 10) || 0);
+  const hours = parts[0] || 0;
+  const minutes = parts[1] || 0;
+  return hours * 3600 + minutes * 60;
 }
 
 function formatClockTime(date) {
@@ -235,7 +236,7 @@ function computeGoal() {
   let paceSecPerKm;
 
   if (goalType === "time") {
-    const totalSec = parseClockToSeconds(document.getElementById("goalTimeInput").value || "0");
+    const totalSec = parseHoursMinutesToSeconds(document.getElementById("goalTimeInput").value || "0:00");
     paceSecPerKm = totalSec / MARATHON_KM;
   } else {
     paceSecPerKm = parseClockToSeconds(document.getElementById("goalPaceInput").value || "0");
