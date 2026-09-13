@@ -115,6 +115,7 @@ input[type="time"] {
   font-size: 1.3rem;
   padding: 0.5rem 0.7rem;
   outline: none;
+  height: 46px;
 }
 
 input[type="text"]:focus,
@@ -141,16 +142,20 @@ input[type="time"] {
   border: 3px solid var(--ink);
   border-radius: 6px;
   overflow: hidden;
+  height: 46px;
 }
 
 .toggle-btn {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #fff;
   color: var(--indigo-dark);
   border: none;
   font-family: var(--font-pixel);
   font-size: 0.5rem;
-  padding: 0.8rem 0.4rem;
+  padding: 0.4rem;
   cursor: pointer;
   text-transform: uppercase;
 }
