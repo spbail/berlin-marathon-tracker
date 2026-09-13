@@ -129,14 +129,23 @@ function getState() {
   };
 }
 
+// A native time input requires a strictly zero-padded "HH:MM" value —
+// pad old share links that stored an unpadded value like "3:45".
+function padTimeValue(str) {
+  const parts = str.split(":");
+  if (parts.length !== 2) return str;
+  return parts.map((p) => p.padStart(2, "0")).join(":");
+}
+
 function applyState(state) {
   if (!state) return;
   if (state.n) document.getElementById("nameInput").value = state.n;
-  if (state.s) document.getElementById("startInput").value = state.s;
+  if (state.s) document.getElementById("startInput").value = padTimeValue(state.s);
   if (state.gt) setToggle("goalTypeToggle", state.gt);
   if (state.gv) {
-    if (state.gt === "pace") document.getElementById("goalPaceInput").value = state.gv;
-    else document.getElementById("goalTimeInput").value = state.gv;
+    const padded = padTimeValue(state.gv);
+    if (state.gt === "pace") document.getElementById("goalPaceInput").value = padded;
+    else document.getElementById("goalTimeInput").value = padded;
   }
 }
 
