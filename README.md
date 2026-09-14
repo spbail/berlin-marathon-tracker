@@ -1,6 +1,8 @@
-# Where's Sam? — Berlin Marathon Tracker
+# Where's Sam? — Berlin Marathon Cheer Planner
 
 Static, client-side only (no backend). 4 files: `index.html`, `style.css`, `app.js`, `route-data.js`.
+
+A plan-ahead spectator tool, not a live tracker: friends enter a runner's start time and goal pace/finish time, and it predicts roughly where on the course they'll be at what clock time — no GPS, no live data.
 
 ## Deploy to Cloudflare Pages
 

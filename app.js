@@ -1,5 +1,5 @@
 // ============================================================================
-// Sam's Berlin Marathon — client-side only spectator tracker.
+// Sam's Berlin Marathon Cheer Planner — client-side only, plan-ahead spectator tool.
 // All state lives in the URL (?d=... base64 blob) — no backend, no storage.
 // Nothing recomputes as you type — only the CALCULATE button updates the
 // header, map markers, and splits table.
@@ -283,7 +283,7 @@ function render() {
   const name = document.getElementById("nameInput").value.trim() || "Sam";
 
   document.getElementById("pageTitle").innerHTML = `Where's <span class="accent">${escapeHtml(name)}</span>?`;
-  document.title = `Where's ${name}? — Berlin Marathon Tracker`;
+  document.title = `Where's ${name}? — Berlin Marathon Cheer Planner`;
 
   if (splitMarkersLayer) {
     splitMarkersLayer.clearLayers();
